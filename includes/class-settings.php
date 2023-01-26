@@ -34,7 +34,14 @@ class Settings {
 			true,
 		);
 		wp_enqueue_script( 'settings' );
-		error_log( 'enqueued settings' );
+
+		wp_localize_script(
+			'settings',
+			'wpReactBackendSettings',
+			array(
+				'slug' => $this->options[0]['slug'],
+			)
+		);
 
 		// Load our style.css.
 		wp_register_style(
@@ -71,11 +78,10 @@ class Settings {
 		echo '<div class="wp-react-backend-settings-wrapper wrap"></div>';
 	}
 
-	public function register_menu( $name, $slug, $component ) {
+	public function register_menu( $name, $slug ) {
 		$this->options[] = array(
-			'name'      => $name,
-			'slug'      => $slug,
-			'component' => $component,
+			'name' => $name,
+			'slug' => $slug,
 		);
 	}
 

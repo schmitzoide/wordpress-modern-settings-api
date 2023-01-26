@@ -2,17 +2,15 @@ import { render } from "@wordpress/element";
 
 import "./style.scss";
 
-export const registerSettingsPanel = (title, component) => {
-  return (
-    <div>
-      <h2>{title}</h2>
-      <component />
-    </div>
-  );
-};
+const { slug } = wpReactBackendSettings;
 
 const Settings = () => {
-  return <h2>Settings</h2>;
+  return (
+    <div>
+      <h1>Settings</h1>
+      <div className={slug}></div>
+    </div>
+  );
 };
 
 window.addEventListener("load", function () {
