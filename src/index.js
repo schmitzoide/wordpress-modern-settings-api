@@ -4,6 +4,12 @@ import "./style.scss";
 
 const { slug } = wpReactBackendSettings;
 
+const components = [];
+
+export const registerSettingsPanel = (Component) => {
+  components.push(Component);
+};
+
 const Settings = () => {
   return (
     <div>
@@ -20,4 +26,17 @@ window.addEventListener("load", function () {
   }
   const attributes = wrapper.dataset;
   render(<Settings {...attributes} />, wrapper);
+
+  const inner = document.querySelector("." + slug);
+  if (!inner) {
+    return;
+  }
+  render(
+    <div>
+      {components.map((component) => {
+        return component;
+      })}
+    </div>,
+    inner
+  );
 });

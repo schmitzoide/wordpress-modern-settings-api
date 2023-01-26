@@ -9,6 +9,9 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "registerSettingsPanel": () => (/* binding */ registerSettingsPanel)
+/* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
@@ -18,6 +21,10 @@ __webpack_require__.r(__webpack_exports__);
 const {
   slug
 } = wpReactBackendSettings;
+const components = [];
+const registerSettingsPanel = Component => {
+  components.push(Component);
+};
 const Settings = () => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Settings"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: slug
@@ -30,6 +37,13 @@ window.addEventListener("load", function () {
   }
   const attributes = wrapper.dataset;
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(Settings, attributes), wrapper);
+  const inner = document.querySelector("." + slug);
+  if (!inner) {
+    return;
+  }
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, components.map(component => {
+    return component;
+  })), inner);
 });
 
 /***/ }),
