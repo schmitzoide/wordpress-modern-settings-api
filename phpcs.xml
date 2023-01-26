@@ -1,28 +1,14 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Coding Standards">
-	<description>WordPress Dev Ruleset</description>
-
-	<!-- Exclude paths -->
-	<exclude-pattern>*/node_modules/*</exclude-pattern>
+<ruleset name="WordPress Coding Standards for Gutenberg Examples">
+    <rule ref="WordPress"/>
+	<arg name="extensions" value="php"/>
+	<file>.</file>
+	<!-- Exclude Vendor directory -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
-	<exclude-pattern>*/tests/*</exclude-pattern>
-	<exclude-pattern>*/languages/*</exclude-pattern>
-
-	<!-- Configs -->
-	<config name="minimum_supported_wp_version" value="4.7" />
-
-	<rule ref="WordPress.WP.I18n">
-		<properties>
-			<property name="text_domain" type="array" value="wp-react-backend" />
-		</properties>
-	</rule>
-
-	<rule ref="Generic.Commenting.Todo">
-		<exclude name="Generic.Commenting.Todo.TaskFound"/>
-		<exclude name="Generic.Commenting.Todo.CommentFound"/>
-	</rule>
-
-	<rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
-		<exclude-pattern>src/*</exclude-pattern>
-    </rule>
+	<!-- Exclude Build directory -->
+	<exclude-pattern>*/build/*</exclude-pattern>
+	<!-- Exclude node_modules directory -->
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<!-- Exclude block.asset.php file -->
+	<exclude-pattern>*/**/block.asset.php</exclude-pattern>
 </ruleset>

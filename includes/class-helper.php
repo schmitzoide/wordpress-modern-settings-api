@@ -2,7 +2,7 @@
 
 namespace WP_React_Backend;
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 class Helper {
 

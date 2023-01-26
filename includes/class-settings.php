@@ -6,74 +6,77 @@ defined( 'ABSPATH' ) || exit;
 
 class Settings {
 
-	protected $options = [];
+	protected $options = array();
 
 	final public function __construct() {
 		if ( is_admin() ) {
 			add_action( 'admin_menu', array( $this, 'admin_menus' ) );
-            add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
+			add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ), 9 );
 		}
 	}
 
-    public function admin_enqueue_scripts() {
+	public function admin_enqueue_scripts() {
 
-        $page = isset( $_GET["page"] ) ? $_GET["page"] : '';
-        wp_enqueue_script(
-            'wp-react-backend-settings_' . $page,
-            plugins_url( '../build/settings.js', __FILE__ ),
-            array(),
-            filemtime( plugin_dir_path( __FILE__ ) . '../build/settings.js' ),
-            true
-        );
+		// Automatically load dependencies and version.
+		$asset_file = include plugin_dir_path( __FILE__ ) . '../build/index.asset.php';
 
-        wp_localize_script(
-            'wp-react-backend-settings_' . $page,
-            'wp_react_backend_settings_options',
-            array( 'page' => $page ) 
-        );
+		// Enqueue CSS dependencies.
+		foreach ( $asset_file['dependencies'] as $style ) {
+			wp_enqueue_style( $style );
+		}
 
-        wp_enqueue_style(
-            'wp-react-backend-css',
-            plugins_url( '../build/style.css', __FILE__ ),
-            array(),
-            filemtime( plugin_dir_path( __FILE__ ) . '../build/style.css' )
-        );
-    }
+		// Load our app.js.
+		wp_register_script(
+			'settings',
+			plugins_url( '../build/index.js', __FILE__ ),
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			true,
+		);
+		wp_enqueue_script( 'settings' );
+		error_log( 'enqueued settings' );
+
+		// Load our style.css.
+		wp_register_style(
+			'settings',
+			plugins_url( '../build/style-index.css', __FILE__ ),
+			null,
+			$asset_file['version'],
+		);
+		wp_enqueue_style( 'settings' );
+
+	}
 
 	public function admin_menus() {
 
-        foreach( $this->options as $option ) {
+		foreach ( $this->options as $option ) {
 
-            $name = $option['name'];
-            $slug = $option['slug'];
+			$name = $option['name'];
+			$slug = $option['slug'];
 
-            add_menu_page(
-                $name,
-                $name,
-                'manage_options',
-                $slug,
-                array( $this, 'settings_wrapper' ),
-                'dashicons-admin-generic',
-                99
-            );
-        }
-        
+			add_menu_page(
+				$name,
+				$name,
+				'manage_options',
+				$slug,
+				array( $this, 'settings_wrapper' ),
+				'dashicons-admin-generic',
+				99
+			);
+		}
+
 	}
 
-    public function settings_wrapper() {
-        $page = isset( $_GET["page"] ) ? $_GET["page"] : '';
-        echo '<div class="wp-react-backend-settings-wrapper_' . $page . ' wrap"></div>';
-    }
+	public function settings_wrapper() {
+		echo '<div class="wp-react-backend-settings-wrapper wrap"></div>';
+	}
 
-    public function register_menu( $name, $slug ) {
-        $this->options[] = [
-            'name' => $name,
-            'slug' => $slug
-        ];
-    }
+	public function register_menu( $name, $slug, $component ) {
+		$this->options[] = array(
+			'name'      => $name,
+			'slug'      => $slug,
+			'component' => $component,
+		);
+	}
 
 }
-
-$settings = new Settings();
-$settings->register_menu( 'WP React Backend 1', 'wp-react-backend-1' );
-$settings->register_menu( 'WP React Backend 2', 'wp-react-backend-2' );

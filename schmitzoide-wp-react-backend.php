@@ -33,7 +33,6 @@ add_action(
 		require_once __DIR__ . '/vendor/autoload.php';
 		require_once __DIR__ . '/includes/class-helper.php';
 		require_once __DIR__ . '/includes/class-settings.php';
-
 		new Plugin();
 	}
 );
