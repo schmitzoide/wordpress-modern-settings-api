@@ -1,7 +1,7 @@
 {
-    "name": "schmitzoide-wp-react-backend",
+    "name": "wordpress-modern-settings-api",
     "main": "build/index.js",
-    "version": "0.0.1",
+    "version": "0.3.0",
     "description": "Enable usable of react components on the WordPress admin side.",
     "author": "Marcel Schmitz",
     "license": "GPL-3.0+",
@@ -16,9 +16,5 @@
     },
     "devDependencies": {
         "@wordpress/scripts": "^25.2.0"
-    },
-    "dependencies": {
-        "bootstrap": "^5.2.3",
-        "classnames": "^2.3.2"
     }
 }

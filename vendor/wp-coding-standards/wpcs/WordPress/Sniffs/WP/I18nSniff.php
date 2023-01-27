@@ -191,7 +191,7 @@ class I18nSniff extends AbstractFunctionRestrictionsSniff {
 		$this->text_domain_is_default       = false;
 
 		// Allow overruling the text_domain set in a ruleset via the command line.
-		$cl_text_domain = trim( PHPCSHelper::get_config_data( 'text_domain' ) );
+		$cl_text_domain = trim( PHPCSHelper::get_config_data( 'text_domain' ?? '' ) );
 		if ( ! empty( $cl_text_domain ) ) {
 			$this->text_domain = array_filter( array_map( 'trim', explode( ',', $cl_text_domain ) ) );
 		}
@@ -630,7 +630,7 @@ class I18nSniff extends AbstractFunctionRestrictionsSniff {
 		 *
 		 * Strip placeholders and surrounding quotes.
 		 */
-		$content_without_quotes  = trim( $this->strip_quotes( $content ) );
+		$content_without_quotes  = trim( $this->strip_quotes( $content ) ?? '' );
 		$non_placeholder_content = preg_replace( self::SPRINTF_PLACEHOLDER_REGEX, '', $content_without_quotes );
 
 		if ( '' === $non_placeholder_content ) {
@@ -726,7 +726,7 @@ class I18nSniff extends AbstractFunctionRestrictionsSniff {
 					if ( true === $correctly_placed ) {
 
 						if ( \T_COMMENT === $this->tokens[ $previous_comment ]['code'] ) {
-							$comment_text = trim( $this->tokens[ $previous_comment ]['content'] );
+							$comment_text = trim( $this->tokens[ $previous_comment ]['content'] ?? '' );
 
 							// If it's multi-line /* */ comment, collect all the parts.
 							if ( '*/' === substr( $comment_text, -2 ) && '/*' !== substr( $comment_text, 0, 2 ) ) {
@@ -735,7 +735,7 @@ class I18nSniff extends AbstractFunctionRestrictionsSniff {
 										break;
 									}
 
-									$comment_text = trim( $this->tokens[ $i ]['content'] ) . $comment_text;
+									$comment_text = trim( $this->tokens[ $i ]['content'] ?? '' ) . $comment_text;
 								}
 							}
 

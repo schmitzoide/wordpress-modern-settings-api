@@ -1,38 +1,40 @@
 <?php
 /**
- * Plugin URI: https://marcelschmitz.com
- * Plugin Name: WordPress React Backend
+ * Plugin URI: https://github.com/schmitzoide/wordpress-modern-settings-api
+ * Plugin Name: WordPress Modern Settings API
  * Description: Enable usable of react components on the WordPress admin side.
- * Version: 0.0.1
+ * Version: 0.3.0
  * Author: Marcel Schmitz
- * Author URI: https://marcelschmitz.com
- * Text Domain: wp-react-backend
- * Requires PHP: 8.0
+ * Author URI: https://profiles.wordpress.org/schmitzoide/
+ * Text Domain: wordpress-modern-settings-api
+ * Requires PHP: 8.1
  *
- * @package WP_React_Backend\Plugin
+ * @package WP_Modern_Settings\Plugin
  * @internal This file is only used when running as a feature plugin.
  */
 
-namespace WP_React_Backend;
+namespace WP_Modern_Settings;
 
 defined( 'ABSPATH' ) || exit;
 
-if ( ! class_exists( 'WP_React_Backend\Plugin' ) ) {
+/**
+ * This is the main class for the plugin to fire up.
+ */
+class Plugin {
 
-	class Plugin {
-
-		public function __construct() {
-		}
+	/**
+	 * Construct.
+	 */
+	public function __construct() {
+		require_once __DIR__ . '/includes/class-settings.php';
 	}
-
 }
 
 add_action(
 	'plugins_loaded',
 	function () {
 		require_once __DIR__ . '/vendor/autoload.php';
-		require_once __DIR__ . '/includes/class-helper.php';
-		require_once __DIR__ . '/includes/class-settings.php';
 		new Plugin();
-	}
+	},
+	5
 );

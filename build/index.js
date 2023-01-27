@@ -16,20 +16,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/style.scss");
 
+/**
+ * External dependencies
+ */
 
 
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * We're getting the title and slug from the wp_localize_script() function in the PHP file.
+ */
 const {
+  title,
   slug
 } = wpReactBackendSettings;
 const components = [];
+
+/**
+ * Compoeent that comes from the plugins using this feature. It will be rendered in the settings page.
+ * @param {React.Element} Component
+ */
 const registerSettingsPanel = Component => {
   components.push(Component);
 };
+
+/**
+ * Wrapper component. Returns the title and the container for the components that are registered.
+ * @returns {JSX.Element} The settings wrapper.
+ */
 const Settings = () => {
-  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "Settings"), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, title), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: slug
   }));
 };
+
+/**
+ * Renders the settings wrapper first, then renders the components that are registered.
+ */
 window.addEventListener("load", function () {
   const wrapper = document.querySelector(".wp-react-backend-settings-wrapper");
   if (!wrapper) {
