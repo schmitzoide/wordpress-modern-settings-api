@@ -6,13 +6,9 @@ React is a popular JavaScript library for building user interfaces. When used in
 With this feature plugin installed, developers can create a settings page using only react components, benefiting from the widely adopted and well-supported technology, making it easier to find developers with experience using it.
 
 # Getting Started #
-The repository consists of two plugins: the *feature plugin* and an *example plugin* that developers would use to create their settings page.
+The solultion /proposal consists of two plugins: the *feature plugin* (this one) and an *example plugin* that developers would use to create their settings page.
 
-You can start by cloning the project into the plugin's directory of a WordPress installation and by activating both plugins. Then you should run `npm install` on both folders. 
-
-You can then edit the settings panel component on the example plugin and use `npm run start` to get it started. 
-
-**Important Note:** please make a copy of the file inside `src/settings.json` into the `/build` folder after compiling for the first time. 
+You can start by cloning the project into the plugin's directory of a WordPress installation and by activating both plugins. Then you should run `npm install` and you're good to go to work on this plugin. Now for the registraion functions to be accessible via the example plugin, you need to run `npm link` on the feature plugin folder, and then run `npm link wordpress-modern-settings-api` on the example plugin.
 
 # Get Involved #
 We'd like for you to get involved and help us complete a list of suggested next steps, as this is a fairly young and ambitious project.
