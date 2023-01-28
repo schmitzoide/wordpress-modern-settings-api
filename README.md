@@ -17,11 +17,11 @@ The short / midterm goals are to create exposed components inside the feature pl
 
 This is a short list of the next steps we suggest taking:
 
-[ ] Review the whole PHP and JavaScript code and clean up as needed.
-[ ] Review and revalidate the settings.json schema.
-[ ] Test if there is support for multiple example plugins to run at the same time.
-[ ] Add support for submenus.
-[ ] Add a first component to the feature plugin that enables the creation of a form with some inputs and saves the values into metadata.
+- [ ] Review the whole PHP and JavaScript code and clean up as needed.
+- [ ] Review and revalidate the settings.json schema.
+- [ ] Test if there is support for multiple example plugins to run at the same time.
+- [ ] Add support for submenus.
+- [ ] Add a first component to the feature plugin that enables the creation of a form with some inputs and saves the values into metadata.
 
 This is a basic first list, feel free to engage and suggest other steps. 
 
