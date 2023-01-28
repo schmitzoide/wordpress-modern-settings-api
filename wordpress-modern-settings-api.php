@@ -7,7 +7,7 @@
  * Author: Marcel Schmitz
  * Author URI: https://profiles.wordpress.org/schmitzoide/
  * Text Domain: wordpress-modern-settings-api
- * Requires PHP: 8.1
+ * Requires PHP: 8.0
  *
  * @package WP_Modern_Settings\Plugin
  * @internal This file is only used when running as a feature plugin.

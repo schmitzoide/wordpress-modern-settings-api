@@ -1,6 +1,6 @@
 {
-    "name": "schmitzoide/wp-react-backend",
-    "version": "0.0.1",
+    "name": "schmitzoide/wordpress-modern-settings-api",
+    "version": "0.3.0",
     "description": "Enable usable of react components on the WordPress admin side.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0+",
